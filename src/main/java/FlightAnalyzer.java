@@ -13,7 +13,7 @@ import java.util.Map;
 public class FlightAnalyzer {
 
     public static void analyzeFlightData(String jsonFilePath) throws IOException, ParseException {
-        // Используем try-with-resources для автоматического закрытия FileReader
+        //используем try-with-resources для автоматического закрытия FileReader
         try (FileReader fileReader = new FileReader(jsonFilePath)) {
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
@@ -27,7 +27,7 @@ public class FlightAnalyzer {
     private static void calculateMinFlightTime(JsonArray tickets) {
         System.out.println("Минимальное время полета между городами Владивосток и Тель-Авив для каждого авиаперевозчика: ");
 
-        // Группировка билетов по авиаперевозчику
+        //Группировка билетов по авиаперевозчику
         Map<String, List<JsonObject>> groupedByCarrier = new HashMap<>();
 
         for (int i = 0; i < tickets.size(); i++) {
@@ -37,7 +37,7 @@ public class FlightAnalyzer {
             groupedByCarrier.computeIfAbsent(carrier, k -> new ArrayList<>()).add(ticket);
         }
 
-        // Нахождение минимального времени полета для каждого авиаперевозчика
+        //Нахождение минимального времени полета для каждого авиаперевозчика
         groupedByCarrier.forEach((carrier, carrierTickets) -> {
             int minFlightTime = carrierTickets.stream()
                     .mapToInt(ticket -> ticket.get("stops").getAsInt())
@@ -51,7 +51,7 @@ public class FlightAnalyzer {
     private static void calculatePriceDifference(JsonArray tickets) {
         System.out.println("\nРазница между средней ценой и медианой для полета между городами Владивосток и Тель-Авив:");
 
-        // Извлечение цен билетов
+        //извлечение цен на билеты
         List<Integer> prices = new ArrayList<>();
 
         for (int i = 0; i < tickets.size(); i++) {
@@ -60,7 +60,7 @@ public class FlightAnalyzer {
             prices.add(price);
         }
 
-        // Расчет средней цены
+        //Расчет средней цены
         double averagePrice = prices.stream()
                 .mapToDouble(Integer::doubleValue)
                 .average()
@@ -69,7 +69,7 @@ public class FlightAnalyzer {
         // Расчет медианы
         double median = calculateMedian(prices);
 
-        // Вывод разницы между средней ценой и медианой
+        //Вывод разницы между средней ценой и медианой
         System.out.println("Средняя цена: " + averagePrice);
         System.out.println("Медиана: " + median);
         System.out.println("Разница: " + (averagePrice - median));
