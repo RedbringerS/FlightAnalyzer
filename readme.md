@@ -15,26 +15,20 @@ To use the Flight Analyzer, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd FlightAnalyzer
+   cd FlightAnalyzer/libs/
    ```
 
-3. Compile the Java program:
+3. Run the program with the path to the JSON file as a command-line argument:
 
    ```bash
-   javac FlightAnalyzer.java
+   java -jar FlightAnalyzer.jar <jsonFilePath>
    ```
 
-4. Run the program with the path to the JSON file as a command-line argument:
-
-   ```bash
-   java FlightAnalyzer <jsonFilePath>
-   ```
-
-5. Replace <jsonFilePath> with the actual path to your JSON file.
+4. Replace <jsonFilePath> with the actual path to your JSON file.
    Assuming your JSON file is named tickets.json, the command would be:
 
    ```bash
-   java FlightAnalyzer tickets.json
+   java -jar FlightAnalyzer.jar tickets.json
    ```
 
 JSON File Format
